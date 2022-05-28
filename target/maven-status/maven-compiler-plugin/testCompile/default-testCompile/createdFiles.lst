@@ -1,6 +1,0 @@
-createCourier\CreateCourierWithNotValidDataTest.class
-createCourier\CreateCourierTest.class
-receivingOrders\ReceivingOrdersTest.class
-signInCourier\SignInCourierTest.class
-createOrders\CreateOrdersTest.class
-signInCourier\SignInCourierWithNotValidDataTest.class
