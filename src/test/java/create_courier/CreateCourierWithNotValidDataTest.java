@@ -1,7 +1,6 @@
-package createCourier;
+package create_courier;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -10,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import utils.DataGenerator;
 
 import static client.CourierApi.*;
 import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
@@ -36,11 +36,11 @@ public class CreateCourierWithNotValidDataTest {
     @Parameterized.Parameters(name = "test data: {0} {3}")
     public static Object[][] getNotValidCourier() {
         return new Object[][]{
-                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", Courier.builder().login("").password(getRandomString(7)).firstName(getRandomString(7)).build(), "Отсутствует логин"},
-                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", Courier.builder().login(getRandomString(7)).password("").firstName(getRandomString(7)).build(), "Отсутствует пароль"},
-                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", Courier.builder().login(getRandomString(7)).password(getRandomString(7)).firstName("").build(), "Отсутствует имя"},
-                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", Courier.builder().login("").password("").firstName(getRandomString(7)).build(), "Отсутствует лог/пасс"},
-                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", Courier.builder().login("").password("").firstName("").build(), "Отсутствует лог/пасс и имя"}
+                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", DataGenerator.courierGenerator("", 7, 7), "Отсутствует логин"},
+                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", DataGenerator.courierGenerator(7, "", 7), "Отсутствует пароль"},
+                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", DataGenerator.courierGenerator(7, 7, ""), "Отсутствует имя"},
+                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", DataGenerator.courierGenerator("", "", 7), "Отсутствует лог/пасс"},
+                {SC_BAD_REQUEST, "Недостаточно данных для создания учетной записи", DataGenerator.courierGenerator("", "", ""), "Отсутствует лог/пасс и имя"}
         };
     }
 

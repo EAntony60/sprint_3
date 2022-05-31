@@ -1,7 +1,6 @@
-package createCourier;
+package create_courier;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -9,6 +8,7 @@ import model.Courier;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import utils.DataGenerator;
 
 import static client.CourierApi.*;
 import static org.apache.http.HttpStatus.*;
@@ -40,11 +40,7 @@ public class CreateCourierTest {
     @Test
     @DisplayName("Создание курьера с полными и валидными данными")
     public void successCreateNewCourier(){
-        courier = Courier.builder()
-                .login(getRandomString(7))
-                .password(getRandomString(7))
-                .firstName(getRandomString(7))
-                .build();
+        courier = DataGenerator.courierGenerator(7, 7, 7);
         Response createCourierResponse = createCourier(courier, spec);
         createCourierResponse.then()
                 .assertThat()
@@ -56,11 +52,7 @@ public class CreateCourierTest {
     @Test
     @DisplayName("Создание не уникального курьера")
     public void createNotUniqueCourier(){
-        courier = Courier.builder()
-                .login(getRandomString(7))
-                .password(getRandomString(7))
-                .firstName(getRandomString(7))
-                .build();
+        courier = DataGenerator.courierGenerator(7, 7, 7);
         createCourier(courier, spec);
         Courier notUnique = Courier.builder()
                 .login(courier.getLogin())
