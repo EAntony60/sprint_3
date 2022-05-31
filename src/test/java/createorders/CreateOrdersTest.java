@@ -1,4 +1,4 @@
-package createOrders;
+package createorders;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.builder.RequestSpecBuilder;

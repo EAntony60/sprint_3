@@ -1,4 +1,4 @@
-package create_courier;
+package createcourier;
 
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.builder.RequestSpecBuilder;

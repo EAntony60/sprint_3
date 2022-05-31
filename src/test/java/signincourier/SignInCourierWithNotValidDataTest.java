@@ -1,4 +1,4 @@
-package signInCourier;
+package signincourier;
 
 
 import io.qameta.allure.junit4.DisplayName;
