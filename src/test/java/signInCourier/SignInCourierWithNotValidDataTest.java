@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import utils.DataGenerator;
 
 import static client.CourierApi.*;
 import static io.restassured.RestAssured.*;
@@ -23,11 +24,7 @@ import static utils.Utils.getRandomString;
 public class SignInCourierWithNotValidDataTest {
 
     private  final int expectStatusCode;
-    private static Courier courier  = Courier.builder().
-            login(getRandomString(7))
-            .password(getRandomString(7))
-            .firstName(getRandomString(7))
-            .build();
+    private static Courier courier  = DataGenerator.courierGenerator(7, 7, 7);
     private final String expectErrorMessage;
 
     private final Courier courierSignIn;
