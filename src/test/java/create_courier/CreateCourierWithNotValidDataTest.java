@@ -44,25 +44,22 @@ public class CreateCourierWithNotValidDataTest {
         };
     }
 
-
     @Before
-    public void setUp(){
+    public void setUp() {
         spec = new RequestSpecBuilder()
                 .setBaseUri("https://qa-scooter.praktikum-services.ru/")
                 .setContentType("application/json")
                 .build();
     }
 
-
     @Test
     @DisplayName("Создание курьера с неполным набором данных")
-    public void notValidCreateNewCourier(){
+    public void notValidCreateNewCourier() {
         Response createCourierResponse = createCourier(courier, spec);
         createCourierResponse.then()
                 .assertThat()
                 .statusCode(expectStatusCode)
                 .and()
-                .body("message",equalTo(expectErrorMessage));
+                .body("message", equalTo(expectErrorMessage));
     }
-
 }
