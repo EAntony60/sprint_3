@@ -13,7 +13,6 @@ import utils.DataGenerator;
 import static client.CourierApi.*;
 import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
-import static utils.Utils.getRandomString;
 
 public class CreateCourierTest {
 

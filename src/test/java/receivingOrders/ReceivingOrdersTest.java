@@ -1,7 +1,6 @@
 package receivingOrders;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -15,7 +14,6 @@ import static client.CourierApi.*;
 import static client.OrderApi.*;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.*;
-import static utils.Utils.*;
 
 public class ReceivingOrdersTest {
 

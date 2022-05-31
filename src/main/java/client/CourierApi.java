@@ -14,7 +14,6 @@ public class CourierApi {
     private static final String SIGN_IN_COURIER_URI = "/api/v1/courier/login";
     private static final String DELETE_COURIER_URI = "/api/v1/courier/";
 
-
     @Step("Создание нового курьера")
     public static Response createCourier(Courier userCourier, RequestSpecification spec) {
 

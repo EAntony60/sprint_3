@@ -41,7 +41,6 @@ public class OrderApi {
                 .when()
                 .put(CANCEL_ORDER_URI);
     }
-
     @Step("Получение списка заказов без параметров")
     public static Response receivingListOrdersWithoutQuery(RequestSpecification spec) {
         return given()
@@ -64,7 +63,6 @@ public class OrderApi {
     @Step("Принятие заказа курьером")
     public static Response acceptOrder(int courierId, int id, RequestSpecification spec) {
         String acceptOrderURIWithCourierId = ACCEPT_ORDER_URI + id;
-
 
         return given()
                 .spec(spec)

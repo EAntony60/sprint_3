@@ -14,7 +14,6 @@ import utils.DataGenerator;
 import static client.CourierApi.*;
 import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.hamcrest.Matchers.equalTo;
-import static utils.Utils.getRandomString;
 
 @RunWith(Parameterized.class)
 public class CreateCourierWithNotValidDataTest {

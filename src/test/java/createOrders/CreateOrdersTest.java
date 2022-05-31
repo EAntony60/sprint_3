@@ -1,7 +1,6 @@
 package createOrders;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -13,12 +12,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import utils.DataGenerator;
 
-import static client.CourierApi.*;
 import static client.OrderApi.cancelOrder;
 import static client.OrderApi.createOrder;
 import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.hamcrest.Matchers.notNullValue;
-import static utils.Utils.*;
 
 @RunWith(Parameterized.class)
 public class CreateOrdersTest {
