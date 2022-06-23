@@ -1,7 +1,6 @@
-package createOrders;
+package createorders;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -11,17 +10,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import utils.DataGenerator;
 
-import static client.CourierApi.*;
 import static client.OrderApi.cancelOrder;
 import static client.OrderApi.createOrder;
 import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.hamcrest.Matchers.notNullValue;
-import static utils.Utils.*;
 
 @RunWith(Parameterized.class)
 public class CreateOrdersTest {
-
 
     private final int expectStatusCode;
     private final String descriptionData;
@@ -37,14 +34,13 @@ public class CreateOrdersTest {
         this.order = order;
     }
 
-
     @Parameterized.Parameters(name = "test data: {0} {1}")
     public static Object[][] getNotValidData(){
         return new Object[][]{
-                {SC_CREATED, "Только чёрный", Order.builder().color(new String[]{"BLACK"}).firstName(getRandomString(7)).lastName(getRandomString(7)).address(getRandomString(15)).metroStation(getRandomString(1)).phone("+7 233 123 98 92").rentTime(getRandomNumber(0,10)).deliveryDate(getRandomDate()).comment(getRandomString(24)).build()},
-                {SC_CREATED, "Только серый", Order.builder().color(new String[]{"GREY"}).firstName(getRandomString(7)).lastName(getRandomString(7)).address(getRandomString(15)).metroStation(getRandomString(1)).phone("+7 233 123 98 92").rentTime(getRandomNumber(0,10)).deliveryDate(getRandomDate()).comment(getRandomString(24)).build()},
-                {SC_CREATED, "Серый и черный", Order.builder().color(new String[]{"GREY", "BLACK"}).firstName(getRandomString(7)).lastName(getRandomString(7)).address(getRandomString(15)).metroStation(getRandomString(1)).phone("+7 233 123 98 92").rentTime(getRandomNumber(0,10)).deliveryDate(getRandomDate()).comment(getRandomString(24)).build()},
-                {SC_CREATED, "Цвет отсутствует", Order.builder().color(new String[]{}).firstName(getRandomString(7)).lastName(getRandomString(7)).address(getRandomString(15)).metroStation(getRandomString(1)).phone("+7 233 123 98 92").rentTime(getRandomNumber(0,10)).deliveryDate(getRandomDate()).comment(getRandomString(24)).build()}
+                {SC_CREATED, "Только чёрный", DataGenerator.orderGenerator(new String[] {"BLACK"},7,7,15,1,"+7 233 123 98 92", 10, 24)},
+                {SC_CREATED, "Только серый", DataGenerator.orderGenerator(new String[]{"GREY"},7,7,15,1,"+7 233 123 98 92", 10, 24)},
+                {SC_CREATED, "Серый и черный", DataGenerator.orderGenerator(new String[]{"GREY", "BLACK"},7,7,15,1,"+7 233 123 98 92", 10, 24)},
+                {SC_CREATED, "Цвет отсутствует", DataGenerator.orderGenerator(new String[]{},7,7,15,1,"+7 233 123 98 92", 10, 24)}
         };
     }
 

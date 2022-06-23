@@ -1,7 +1,6 @@
-package signInCourier;
+package signincourier;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -21,7 +20,6 @@ public class SignInCourierTest {
     private int id;
 
     private RequestSpecification spec;
-
 
     @Before
     public void setUp(){

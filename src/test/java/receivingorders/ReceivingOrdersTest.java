@@ -1,7 +1,6 @@
-package receivingOrders;
+package receivingorders;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -9,12 +8,12 @@ import model.Courier;
 import model.Order;
 import org.junit.Before;
 import org.junit.Test;
+import utils.DataGenerator;
 
 import static client.CourierApi.*;
 import static client.OrderApi.*;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.*;
-import static utils.Utils.*;
 
 public class ReceivingOrdersTest {
 
@@ -45,22 +44,11 @@ public class ReceivingOrdersTest {
     @Test
     @DisplayName("Получение списка заказов у конкретного курьера")
     public void ordersListWithCourierId(){
-        Courier courier = Courier.builder()
-                .login(getRandomString(7))
-                .password(getRandomString(7))
-                .firstName(getRandomString(7)).build();
+        Courier courier = DataGenerator.courierGenerator(7,7,7);
+
         createCourier(courier, spec);
 
-        Order order = Order.builder()
-                .color(new String[]{"BLACK"})
-                .firstName(getRandomString(7))
-                .lastName(getRandomString(7))
-                .address(getRandomString(15))
-                .metroStation(getRandomString(1))
-                .phone("+7 233 123 98 92")
-                .rentTime(getRandomNumber(0,10))
-                .deliveryDate(getRandomDate())
-                .comment(getRandomString(24)).build();
+        Order order = DataGenerator.orderGenerator(new String[] {"BLACK"}, 7, 7, 15, 1, "+7 233 123 98 92", 10, 24);
 
         int track = createOrder(order, spec).then().extract().path("track");
 

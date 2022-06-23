@@ -1,8 +1,7 @@
-package signInCourier;
+package signincourier;
 
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -12,9 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import utils.DataGenerator;
 
 import static client.CourierApi.*;
-import static io.restassured.RestAssured.*;
 import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
 import static utils.Utils.getRandomString;
@@ -23,11 +22,7 @@ import static utils.Utils.getRandomString;
 public class SignInCourierWithNotValidDataTest {
 
     private  final int expectStatusCode;
-    private static Courier courier  = Courier.builder().
-            login(getRandomString(7))
-            .password(getRandomString(7))
-            .firstName(getRandomString(7))
-            .build();
+    private static Courier courier  = DataGenerator.courierGenerator(7, 7, 7);
     private final String expectErrorMessage;
 
     private final Courier courierSignIn;
@@ -37,7 +32,6 @@ public class SignInCourierWithNotValidDataTest {
     private int id;
 
     private RequestSpecification spec;
-
 
     public SignInCourierWithNotValidDataTest(int expectStatusCode, String expectErrorMessage, Courier courierSignIn, String descriptionData) {
         this.expectStatusCode = expectStatusCode;
